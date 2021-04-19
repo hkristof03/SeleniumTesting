@@ -12,7 +12,6 @@ page_main:
     xpath: "//body//div[@id='content']//ul//a[@href='/{}']"
     xpath_result: "//body//div[@id='content']//h3"
     test_data:
-      - !!python/tuple [abtest, A/B Test Control]
       - !!python/tuple [add_remove_elements/, Add/Remove Elements]
       - !!python/tuple [broken_images, Broken Images]
       - !!python/tuple [challenging_dom, Challenging DOM]
