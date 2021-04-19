@@ -1,0 +1,109 @@
+page_main:
+
+  page_main_url: "http://the-internet.herokuapp.com/"
+  go_to_sign_in:
+    desired_text: "Login Page"
+    xpath: "//li//a[@href='/login']"
+    locator: "//body//div[@class='example']//h2"
+  go_back_and_get_title:
+    title: "The Internet"
+
+  test_extendable_static_pages:
+    xpath: "//body//div[@id='content']//ul//a[@href='/{}']"
+    xpath_result: "//body//div[@id='content']//h3"
+    test_data:
+      - !!python/tuple [abtest, A/B Test Control]
+      - !!python/tuple [add_remove_elements/, Add/Remove Elements]
+      - !!python/tuple [broken_images, Broken Images]
+      - !!python/tuple [challenging_dom, Challenging DOM]
+      - !!python/tuple [checkboxes, Checkboxes]
+      - !!python/tuple [context_menu, Context Menu]
+      - !!python/tuple [disappearing_elements, Disappearing Elements]
+      - !!python/tuple [drag_and_drop, Drag and Drop]
+      - !!python/tuple [dropdown, Dropdown List]
+      - !!python/tuple [dynamic_content, Dynamic Content]
+      - !!python/tuple [dynamic_loading, Dynamically Loaded Page Elements]
+      - !!python/tuple [entry_ad, Entry Ad]
+      - !!python/tuple [exit_intent, Exit Intent]
+      - !!python/tuple [download, File Downloader]
+      - !!python/tuple [upload, File Uploader]
+      - !!python/tuple [floating_menu, Floating Menu]
+      - !!python/tuple [frames, Frames]
+      - !!python/tuple [geolocation, Geolocation]
+      - !!python/tuple [horizontal_slider, Horizontal Slider]
+      - !!python/tuple [hovers, Hovers]
+      - !!python/tuple [infinite_scroll, Infinite Scroll]
+      - !!python/tuple [inputs, Inputs]
+      - !!python/tuple [jqueryui/menu, JQueryUI - Menu]
+      - !!python/tuple [javascript_alerts, JavaScript Alerts]
+      - !!python/tuple [key_presses, Key Presses]
+      - !!python/tuple [large, Large & Deep DOM]
+      - !!python/tuple [windows, Opening a new window]
+      - !!python/tuple [notification_message, Notification Message]
+      - !!python/tuple [redirector, Redirection]
+
+page_sign_in:
+  page_sign_in_url: "http://the-internet.herokuapp.com/login"
+  xpath_username: "//form[@name='login']//div//input[@id='username']"
+  xpath_password: "//form[@name='login']//div//input[@id='password']"
+  xpath_sign_in_button: "//form[@name='login']//button//i[@class='fa fa-2x fa-sign-in']"
+  test_sign_in:
+    username: "tomsmith"
+    password: "SuperSecretPassword"
+    xpath_text: "//body//div[@class='flash error']"
+    desired_text: "Your password is invalid!"
+
+page_log_in:
+  page_log_in_url: "http://{username}:{password}@the-internet.herokuapp.com/basic_auth"
+  test_log_in:
+    username: "admin"
+    password: "admin"
+    xpath_text: "//body//div[@id='content']//p"
+    desired_text: "Congratulations! You must have the proper credentials."
+
+page_file_upload:
+  xpath_page: "//body//div//ul//li//a[@href='/upload']"
+  test_upload_file:
+    desired_text: "File Uploaded!"
+    file_name: 'file_upload_test.txt'
+    xpath_choose_file: "//body//div//form[@method='POST']//input[@id='file-upload']"
+    xpath_upload: "//form[@method='POST']//input[@class='button' and @value='Upload']"
+    xpath_result: "//body//div[@id='content']//h3"
+
+page_dropdown:
+  page_dropdown_url: "http://the-internet.herokuapp.com/dropdown"
+  test_read_select_dropdown:
+    xpath: "//body//div[@class='example']//select[@id='dropdown']//option"
+    desired_options:
+      - "Please select an option"
+      - "Option 1"
+      - "Option 2"
+
+page_secure_download:
+  page_secure_download_url: "http://{username}:{password}@the-internet.herokuapp.com/download_secure"
+  username: "admin"
+  password: "admin"
+  path_download: "data_download"
+  test_secure_download:
+    xpath: "//body//div[@class='example']//a"
+
+cookie_manipulator:
+  add_cookies:
+    - name: "test1"
+      value: "cookie1"
+    - name: "test2"
+      value: "cookie2"
+
+page_drag_and_drop:
+  page_drag_and_drop_url: "http://the-internet.herokuapp.com/drag_and_drop"
+  test_drag_and_drop:
+    xpath_source: "//body//div[@class='column' and @id='column-a' and @draggable='true']"
+    xpath_target: "//body//div[@class='column' and @id='column-b' and @draggable='true']"
+
+page_hover:
+  page_hover_url: "http://the-internet.herokuapp.com/hovers"
+  test_hover_perform:
+    desired_text: "Not Found"
+    xpath_first_level: "//div[@class='figure']"
+    xpath_second_level: "//a[@href='/users/1']"
+    xpath_text: "//body//h1"
