@@ -139,7 +139,12 @@ class TestTheInternetHerokuApp(unittest.TestCase):
         for pf in path_files:
             assert os.path.isfile(pf)
         psd.remove_downloaded_files(path_files)
-        assert not os.listdir(psd.path_download)
+        # ignore .gitignore file
+        downloaded_files = [
+            df for df in os.listdir(psd.path_download)
+            if not df.startswith('.')
+        ]
+        assert not downloaded_files
     
     def test_cookie_manipulations(self):
         # Setup
