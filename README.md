@@ -10,7 +10,7 @@ capabilities on a web page which was specifically developed for this purpose: ht
 ## Installation
 
 Install [Anaconda](https://docs.anaconda.com/anaconda/install/) from the official page. Clone the project. Open an Anaconda terminal and create a new
-virtual environment from the supplied config file:
+virtual environment:
 ```sh
 conda create -n SeleniumTesting python=3.8 anaconda
 conda activate SeleniumTesting
