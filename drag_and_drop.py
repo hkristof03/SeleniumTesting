@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 from page_main import PageMain
-from drag_andr_drop_javascript import drag_and_drop
+from drag_and_drop_javascript import drag_and_drop
 
 
 class DragAndDrop(PageMain):
