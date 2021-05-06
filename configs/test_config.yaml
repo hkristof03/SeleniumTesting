@@ -51,6 +51,9 @@ page_sign_in:
     password: "SuperSecretPassword"
     xpath_text: "//body//div[@class='flash error']"
     desired_text: "Your password is invalid!"
+  test_sign_in_with_random_data:
+    xpath_text: "//body//div[@id='flash-messages']//div[@id='flash']"
+    desired_text: "Your username is invalid!"
 
 page_log_in:
   page_log_in_url: "http://{username}:{password}@the-internet.herokuapp.com/basic_auth"

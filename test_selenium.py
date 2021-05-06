@@ -1,9 +1,12 @@
 import os
 from copy import deepcopy
 import unittest
+import random
+import string
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from parameterized import parameterized
 
 from page_main import PageMain
 from page_sign_in import PageSignIn
@@ -78,6 +81,25 @@ class TestTheInternetHerokuApp(unittest.TestCase):
         psi = PageSignIn(self.driver, **config_psi)
         # Exercise
         actual_text = psi.login_valid_user(**config_test_sign_in)
+        # Verify
+        assert desired_text in actual_text
+
+    @parameterized.expand([(1,), (2,), (3,)])
+    def test_log_in_with_random_data(self, it):
+        # Setup
+        config_psi = self.config['page_main']
+        config_psi.update(**self.config['page_sign_in'])
+        config_test_sign_in_wrd = config_psi['test_sign_in_with_random_data']
+        desired_text = config_test_sign_in_wrd['desired_text']
+        psi = PageSignIn(self.driver, **config_psi)
+        username = ''.join(random.choices(
+            string.ascii_uppercase + string.digits, k=10))
+        password = ''.join(random.choices(
+            string.ascii_uppercase + string.digits, k=10))
+        # Exercise
+        actual_text = psi.login_valid_user(
+            username=username, password=password, **config_test_sign_in_wrd
+        )
         # Verify
         assert desired_text in actual_text
 
